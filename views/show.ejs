@@ -1,12 +1,22 @@
 <main class="show-wrapper">
     <section>
+        
         <h2><%= tattoo.title.toUpperCase() %></h2>
-        <h3>Tattoo artist: <%= tattoo.tattoo_artist.toUpperCase() %></h3>
-        <form action="/tattoos/<%= tattoo.id %>" method="post">
-            <input type="hidden" value="delete" name="_method">
-            <button>Delete</button>
-        </form>
-        <a href="/tattoos/<%= tattoo.id %>/edit">Edit</a>
+        <h3>Tattooed by <%= tattoo.artist.toUpperCase() %></h3>
+        <h4>Shared by <%= tattoo.username %></h4>
+        <h4>Posted on ... </h4>
+
+
+        <%if (userId === tattoo.user_id) {%>
+            <form action="/tattoos/<%= tattoo.id %>" method="post">
+                <input type="hidden" value="delete" name="_method">
+                <button>Delete</button>
+            </form>
+            <a href="/tattoos/<%= tattoo.id %>/edit">Edit</a>
+        <% } else { %>
+            <p></p>
+        <% } %>
+
     </section>
     <img class = "show-image" src="<%= tattoo.image_url %>" alt="<%= tattoo.title %>">
 </main>    

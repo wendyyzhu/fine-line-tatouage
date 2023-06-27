@@ -1,20 +1,26 @@
 *{
     box-sizing: border-box;
+    /* border: solid red 1px; */
 }
 
 body {
     width: 80%;
     margin: 0 auto;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
+
 img {
     display: block;
     margin: auto;
-    margin-bottom: 20px;
-    margin-top: 20px;
+}
+
+.header {
+    display: flex;
 }
 
 .grid-image {
     width: 100%;
+    margin-bottom: 20px;
 }
 
 .show-image {
@@ -23,12 +29,97 @@ img {
 
 .logo {
     width: 30%;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .show-wrapper {
     display: grid;
     grid-template-columns: 2fr 3fr;
 }
+
+.logout-btn {
+    border: none;
+    display: inline;
+    background: none;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 14px 16px;
+}
+  
+.welcome-msg {
+    text-align: end;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: aliceblue;
+
+}
+
+/* Links inside the navbar */
+.navbar a {
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+  
+  /* The dropdown container */
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+  
+/* Dropdown button */
+.dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: black;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit; /* Important for vertical align on mobile phones */
+    margin: 0; /* Important for vertical align on mobile phones */
+}
+  
+/* Add a red background color to navbar links on hover */
+.navbar a:hover, .dropdown:hover .dropbtn{
+    background-color: lightgray;
+}
+
+.logout-btn:hover{
+    background-color: lightgray;
+}
+  
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+  
+/* Links inside the dropdown */
+.dropdown-content a {
+    float: none;
+    color: black;
+    /* padding: 12px 16px; */
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+  
+/* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
 
 @media (min-width: 40rem) {
     main {

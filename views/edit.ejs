@@ -7,8 +7,21 @@
     <label for="">Image URL</label>
     <input type="text" name="image_url" value="<%= tattoo.image_url %>">
     <label for="">Category</label>
-    <input type="text" name="category" value="<%= tattoo.category %>">
+    <select name="category" id="category" value="<%= tattoo.category %>">
+        <option value="<%= tattoo.category %>"><%= tattoo.category.toUpperCase() %></option>
+        <option value="floral">FLORAL</option>
+        <option value="dog">DOG</option>
+        <option value="cat">CAT</option>
+        <option value="other_animals">OTHER ANIMALS</option>
+        <option value="nature">NATURE</option>
+        <option value="food">FOOD</option>
+        <option value="geometric">GEOMETRIC</option>
+        <option value="lettering">LETTERING</option>
+        <option value="portrait">PORTRAIT</option>
+        <option value="cartoons">CARTOONS</option>
+        <option value="other">OTHER</option>
+    </select>
     <label for="">Tattoo Artist</label>
-    <input type="text" name="tattoo_artist" value="<%= tattoo.tattoo_artist %>">
+    <input type="text" name="artist" value="<%= tattoo.artist %>">
     <button>Update</button>
 </form>

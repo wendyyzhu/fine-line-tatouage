@@ -9,24 +9,42 @@
 <body>
     <a href="/"><img class = "logo" src="/images/logo.jpg" alt=""></a>
     
-    <nav>
+    <div class="navbar">
         <a href="/">Home</a>
-        <a href="">Category</a>
+        <a href="">My Profile</a>
         <a href="/tattoos">Share a tattoo</a>
 
-        <% if (userId) {%>
-            <p>Hello, <%= user.username.toUpperCase() %>!</p>
-    
-            <form action="/logout" method="post">
-                <input type="hidden" name="_method" value="delete">
-                <button>Logout</button>
-            </form>
-    
-        <% } else { %>
+        <div class="dropdown">
+            <button class="dropbtn">Categories
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="">FLORAL</a>
+                <a href="">DOG</a>
+                <a href="">CAT</a>
+            </div>
+        </div>
+
+
+        
+        
+
+        <% if (!userId) {%>
             <a href="/login">Login</a>
             <a href="/signup">Sign Up</a>
-        <% } %>        
-    </nav>
+        <% } else { %> 
+            <form action="/logout" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <button class="logout-btn">Logout</button>
+            </form>
+        <% } %>            
+
+    </div>
+    
+    <% if (userId) {%>
+        <p class="welcome-msg">Welcome back, <%= user.username.toUpperCase() %>!</p>
+    <% } %> 
+
 
     <%- body %>
 

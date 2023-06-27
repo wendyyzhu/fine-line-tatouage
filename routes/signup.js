@@ -3,11 +3,11 @@ const router = express.Router()
 const db = require("../db")
 const bcrypt = require("bcrypt")
 
-router.get("/signup", (req, res) => {
+router.get("/", (req, res) => {
     res.render("signup")
 })
 
-router.post("/signup", (req, res) => {
+router.post("/", (req, res) => {
     let email = req.body.email
     let username = req.body.username
     let plainTextPassword = req.body.password

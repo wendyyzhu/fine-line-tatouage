@@ -1,0 +1,14 @@
+<h2>Edit post</h2>
+
+<form action="/tattoos/<%= tattoo.id %>" method="post">
+    <input type="hidden" value="put" name="_method">
+    <label for="">Title</label>
+    <input type="text" name="title" value="<%= tattoo.title %>">
+    <label for="">Image URL</label>
+    <input type="text" name="image_url" value="<%= tattoo.image_url %>">
+    <label for="">Category</label>
+    <input type="text" name="category" value="<%= tattoo.category %>">
+    <label for="">Tattoo Artist</label>
+    <input type="text" name="tattoo_artist" value="<%= tattoo.tattoo_artist %>">
+    <button>Update</button>
+</form>

@@ -1,0 +1,24 @@
+const db = require('./index.js')
+const bcrypt = require('bcrypt');
+
+let email = 'test@test.com'
+let username = 'test'
+let plainTextPassword = 'testing'
+let saltRounds = 10
+
+bcrypt.genSalt(saltRounds, (err, salt) => {
+
+    bcrypt.hash(plainTextPassword, salt, (err, hash) => {
+
+        let sql = `INSERT INTO users (email, password_digest, username)
+        VALUES ('${email}', '${hash}', '${username}');
+        `
+        db.query(sql, (err, res) => {
+            if (err) {
+                console.log(err)
+            } else {
+                console.log('new user created')
+            }
+        })
+    })
+});

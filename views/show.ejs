@@ -1,0 +1,14 @@
+<main class="show-wrapper">
+    <section>
+        <h2><%= tattoo.title.toUpperCase() %></h2>
+        <h3>Tattoo artist: <%= tattoo.tattoo_artist.toUpperCase() %></h3>
+        <form action="/tattoos/<%= tattoo.id %>" method="post">
+            <input type="hidden" value="delete" name="_method">
+            <button>Delete</button>
+        </form>
+        <a href="/tattoos/<%= tattoo.id %>/edit">Edit</a>
+    </section>
+    <img class = "show-image" src="<%= tattoo.image_url %>" alt="<%= tattoo.title %>">
+</main>    
+
+

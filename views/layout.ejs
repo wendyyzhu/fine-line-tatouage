@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    
+    <nav>
+        <a href="/"><img class = "logo" src="/images/logo.jpg" alt=""></a>
+        <a href="/">Home</a>
+        <a href="">Category</a>
+        <a href="/tattoos">Share a tattoo</a>
+
+        <% if (userId) {%>
+            <p>Hello, <%= user.username.toUpperCase() %>!</p>
+    
+            <form action="/logout" method="post">
+                <input type="hidden" name="_method" value="delete">
+                <button>Logout</button>
+            </form>
+    
+        <% } else { %>
+            <a href="/login">Login</a>
+            <a href="/signup">Sign Up</a>
+        <% } %>        
+    </nav>
+
+    <%- body %>
+
+    <footer>
+        <p>&copy; 2023 Fine Line Tatouage</p>
+    </footer>
+
+</body>
+</html>

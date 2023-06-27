@@ -1,0 +1,43 @@
+*{
+    box-sizing: border-box;
+}
+
+body {
+    width: 80%;
+    margin: 0 auto;
+}
+img {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.grid-image {
+    width: 100%;
+}
+
+.show-image {
+    width: 100%;
+}
+
+.logo {
+    width: 200px;
+}
+
+.show-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+@media (min-width: 40rem) {
+    main {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 20px;
+    }
+}
+
+@media (min-width: 60rem) {
+    main {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}

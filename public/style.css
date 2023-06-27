@@ -8,7 +8,9 @@ body {
 }
 img {
     display: block;
+    margin: auto;
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .grid-image {
@@ -20,12 +22,12 @@ img {
 }
 
 .logo {
-    width: 200px;
+    width: 30%;
 }
 
 .show-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 2fr 3fr;
 }
 
 @media (min-width: 40rem) {

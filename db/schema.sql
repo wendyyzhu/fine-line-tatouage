@@ -5,7 +5,8 @@ CREATE TABLE tattoos (
     title TEXT, 
     image_url TEXT,
     category TEXT, 
-    artist TEXT
+    artist TEXT,
+    user_id INTEGER
 );
 
 CREATE TABLE users (

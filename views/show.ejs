@@ -3,11 +3,18 @@
         
         <h2><%= tattoo.title.toUpperCase() %></h2>
         <h3>Tattooed by <%= tattoo.artist.toUpperCase() %></h3>
-        <h4>Shared by <%= tattoo.username %></h4>
+
+        <% if (userId === tattoo.user_id) {%>
+            <h4>Shared by you</h4>
+        <% } else { %>
+            <h4>Shared by <a href="/user/<%= tattoo.user_id %>"><%= tattoo.username %></a></h4>
+        <% } %>
+
+        
         <h4>Posted on ... </h4>
 
 
-        <%if (userId === tattoo.user_id) {%>
+        <% if (userId === tattoo.user_id) {%>
             <form action="/tattoos/<%= tattoo.id %>" method="post">
                 <input type="hidden" value="delete" name="_method">
                 <button>Delete</button>

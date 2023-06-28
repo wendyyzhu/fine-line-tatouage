@@ -9,9 +9,11 @@
 <body>
     <a href="/"><img class = "logo" src="../images/Logo.jpg" alt=""></a>
     
+    <a href="/"><img class = "logo" src="/public/images/Logo.jpg" alt=""></a>
+
     <div class="navbar">
         <a href="/">Home</a>
-        <a href="">My Profile</a>
+        <a href="/user">My Profile</a>
         <a href="/tattoos">Share a tattoo</a>
 
         <div class="dropdown">
@@ -41,11 +43,6 @@
 
     </div>
     
-    <% if (userId) {%>
-        <p class="welcome-msg">Welcome back, <%= user.username.toUpperCase() %>!</p>
-    <% } %> 
-
-
     <%- body %>
 
     <footer>

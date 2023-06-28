@@ -7,11 +7,11 @@
         <% if (userId === tattoo.user_id) {%>
             <h4>Shared by you</h4>
         <% } else { %>
-            <h4>Shared by <a href="/user/<%= tattoo.user_id %>"><%= tattoo.username %></a></h4>
+            <h4>Shared by <a href="/user/<%= tattoo.username %>"><%= tattoo.username.toUpperCase() %></a></h4>
         <% } %>
 
         
-        <h4>Posted on ... </h4>
+        <h5>Posted on <%= tattoo.date_posted %></h5>
 
 
         <% if (userId === tattoo.user_id) {%>

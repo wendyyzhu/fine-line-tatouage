@@ -17,6 +17,8 @@ CREATE TABLE users (
 );
 
 ALTER TABLE tattoos ADD column user_id INTEGER;
+ALTER TABLE tattoos ADD column date_posted INTEGER;
+UPDATE tattoos SET date_posted = current_date where id = ;
 
 UPDATE tattoos SET user_id = 1;
 

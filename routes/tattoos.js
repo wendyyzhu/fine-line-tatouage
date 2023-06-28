@@ -12,11 +12,13 @@ router.post("/", ensureLoggedIn, (req, res) => {
     let imageUrl = req.body.image_url
     let category = req.body.category
     let artist = req.body.artist
-    const sql = `INSERT INTO tattoos (title, image_url, category, artist, user_id) 
-                VALUES ($1, $2, $3, $4, $5)
+    let datePosted = new Date().toLocaleDateString();
+
+    const sql = `INSERT INTO tattoos (title, image_url, category, artist, user_id, date_posted) 
+                VALUES ($1, $2, $3, $4, $5, $6)
                 RETURNING id;
                 `
-    db.query(sql, [title, imageUrl, category, artist, req.session.userId], (err, dbRes) => {
+    db.query(sql, [title, imageUrl, category, artist, req.session.userId, datePosted], (err, dbRes) => {
         if (err) {
             console.log(err)
         }

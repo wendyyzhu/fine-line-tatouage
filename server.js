@@ -73,7 +73,7 @@ app.get("/user/:id", ensureLoggedIn, (req, res) => {
     let userId = req.params.id
     const sql = `SELECT * FROM users 
                 JOIN tattoos ON users.id = tattoos.user_id 
-                WHERE tattoos.user_id = $1
+                WHERE users.username = $1
                 ORDER BY tattoos.id desc;`
     db.query(sql, [userId], (err, dbRes) => {
       if (err) {
@@ -84,6 +84,14 @@ app.get("/user/:id", ensureLoggedIn, (req, res) => {
       res.render("users", {tattoos: tattoos, username: username})
     })
 })
+
+
+app.get("/category/:id", (req, res) => {
+  let category = req.params
+  console.log(category)
+
+})
+
 
 app.listen(port, () => {
     console.log(`listening on port ${port}`)

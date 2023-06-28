@@ -9,8 +9,6 @@
 <body>
     <a href="/"><img class = "logo" src="../images/Logo.jpg" alt=""></a>
     
-    <a href="/"><img class = "logo" src="/public/images/Logo.jpg" alt=""></a>
-
     <div class="navbar">
         <a href="/">Home</a>
         <a href="/user">My Profile</a>
@@ -20,16 +18,12 @@
             <button class="dropbtn">Categories
                 <i class="fa fa-caret-down"></i>
             </button>
-            <div class="dropdown-content">
-                <a href="">FLORAL</a>
-                <a href="">DOG</a>
-                <a href="">CAT</a>
+            <div class="dropdown-content" name="category" >
+                <a href="/category">FLORAL</a>
+                <a href="/category">DOG</a>
+                <a href="/category">CAT</a>
             </div>
         </div>
-
-
-        
-        
 
         <% if (!userId) {%>
             <a href="/login">Login</a>

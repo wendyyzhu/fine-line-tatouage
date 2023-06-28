@@ -6,7 +6,7 @@ const db = require("../db/index.js")
 router.get("/", (req, res) => {
     const sql = `SELECT * FROM tattoos 
                 ORDER BY likes desc 
-                LIMIT 8;`
+                LIMIT 12;`
     db.query(sql, (err, dbRes) => {
         if (err) {
             console.log(err)
@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
         // res.render("home", {tattoos: tattoos})
         const sql1 = `SELECT * FROM tattoos 
         ORDER BY tattoos.id desc 
-        LIMIT 8;`
+        LIMIT 12;`
         db.query(sql1, (err, newRes) => {
             if (err) {
                 console.log(err)

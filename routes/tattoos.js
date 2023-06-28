@@ -38,7 +38,10 @@ router.get("/:id", ensureLoggedIn, (req, res) => {
         }
         let tattoo = dbRes.rows[0]
         let category = dbRes.rows[0].category 
-        let sql1 = `SELECT * FROM tattoos WHERE category = '${category}';`
+        let sql1 = `SELECT * FROM tattoos 
+                    WHERE category = '${category}' 
+                    ORDER BY id desc 
+                    LIMIT 12;`
         db.query(sql1, (err, categoryRes) => {
             let similarTattoos = categoryRes.rows
             res.render("show", {tattoo: tattoo, similarTattoos: similarTattoos})

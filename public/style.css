@@ -6,12 +6,31 @@
 body {
     width: 80%;
     margin: 0 auto;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 img {
     display: block;
     margin: auto;
+}
+
+a { 
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+    color:blue;
+}
+
+a:hover {
+    color:blueviolet;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(209, 200, 195);
 }
 
 .header {
@@ -23,40 +42,81 @@ img {
     margin-bottom: 20px;
 }
 
+.grid-image:hover {
+    opacity: 50%;
+}
+
 .show-image {
     width: 100%;
 }
 
 .logo {
-    width: 30%;
-    margin-bottom: 20px;
-    margin-top: 20px;
+    width: 60%;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
-.show-wrapper {
-    display: grid;
-    grid-template-columns: 2fr 3fr;
+.tattoo-title {
+    margin-top: 0;
+}
+
+.login-btn {
+    font-size: 13px;
+}
+
+.signup-btn {
+    font-size: 13px;
 }
 
 .logout-btn {
     border: none;
     display: inline;
     background: none;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 16px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 13px;
     cursor: pointer;
     padding: 14px 16px;
 }
-  
-.welcome-msg {
-    text-align: end;
+
+.like-btn {
+    text-align: center;
+    border: none;
+    background: none;
 }
+
+.like-btn:hover {
+    background-color: red;
+}
+  
+.form {
+    width: 50%;
+    border: 2px solid black;
+    margin: 0 auto;
+}
+
+input {
+    display: block;
+    width: 50%;
+}
+
+.mob-nav {
+    display: none;
+}
+
 .navbar {
     display: flex;
     justify-content: space-between;
-    background-color: aliceblue;
+    background-color: rgb(209, 200, 195);
     margin-bottom: 20px;
 
+}
+
+.nav {
+    font-size: 13px;
+}
+
+#nav {
+    font-size: 13px;
 }
 
 /* Links inside the navbar */
@@ -126,9 +186,15 @@ img {
     main {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
         overflow: hidden;
         column-gap: 20px;
+    }
+    .logo {
+        width: 30%;
+    }
+    .show-wrapper {
+        display: grid;
+        grid-template-columns: 2fr 3fr;
     }
 }
 
@@ -136,4 +202,105 @@ img {
     main {
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
+    .logo {
+        width: 30%;
+    }
+    .show-wrapper {
+        display: grid;
+        grid-template-columns: 2fr 3fr;
+    }
+}
+
+@media (max-width: 760px) {
+    .navbar {
+        display: none;
+    }
+
+    .mob-nav {
+        display: block;
+        background-color: rgb(209, 200, 195);
+    }
+    
+    /* Links inside the navbar */
+    .mob-nav a, .mob-nav label{
+        color: black;
+        /* text-align: center; */
+        padding: 5px 8px;
+        text-decoration: none;
+    }
+
+    .mob-nav label {
+        margin-top: 10px;
+    }
+    
+  
+  /* The dropdown container */
+.dropdown-mob {
+    /* overflow: hidden; */
+}
+  
+/* Dropdown button */
+.dropdown-mob .dropbtn-mob {
+    font-size: 16px;
+    border: solid black 1px;
+    outline: none;
+    color: black;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit; /* Important for vertical align on mobile phones */
+    /* margin: 0; Important for vertical align on mobile phones */
+}
+
+.dropbtn-mob {
+    width: 100%;
+}
+  
+/* Add a red background color to navbar links on hover */
+.mob-nav a:hover, .dropdown-mob:hover .dropbtn-mob{
+    background-color: lightgray;
+}
+
+.logout-btn:hover{
+    background-color: lightgray;
+}
+  
+/* Dropdown content (hidden by default) */
+.dropdown-content-mob {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 80%;
+    margin: 0 auto;
+    /* min-width: 160px; */
+    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+    /* z-index: 1; */
+}
+  
+/* Links inside the dropdown */
+    .dropdown-content-mob a, .dropdown-content-mob label {
+        color: black;
+        text-decoration: none;
+        display: block;
+        text-align: center;     
+    }
+  
+/* Show the dropdown menu on hover */
+    .dropdown-mob:hover .dropdown-content-mob {
+        display: block;
+    }
+
+    ul {
+        list-style-type: none;
+        padding-left: 0px;
+        border-top: 1px black solid;
+        border-bottom: 1px black solid;
+        margin-top: 0;
+    }
+
+    .logout-btn {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+
 }

@@ -1,24 +1,28 @@
-<h2>Edit post</h2>
+<div class = "form">
+    <h2>Edit post</h2>
 
-<form action="/tattoos/<%= tattoo.id %>" method="post">
-    <input type="hidden" value="put" name="_method">
-    <label for="">Title</label>
-    <input type="text" name="title" value="<%= tattoo.title %>">
-    <label for="">Image URL</label>
-    <input type="text" name="image_url" value="<%= tattoo.image_url %>">
-    <label for="">Category</label>
-    <select name="category" id="category" value="<%= tattoo.category %>">
-        <option value="<%= tattoo.category %>"><%= tattoo.category.toUpperCase() %></option>
-        <option value="floral">FLORAL</option>
-        <option value="animals">ANIMALS</option>
-        <option value="nature">NATURE</option>
-        <option value="food">FOOD</option>
-        <option value="geometric">GEOMETRIC</option>
-        <option value="lettering">LETTERING</option>
-        <option value="portrait">PORTRAIT</option>
-        <option value="other">OTHER</option>
-    </select>
-    <label for="">Tattoo Artist</label>
-    <input type="text" name="artist" value="<%= tattoo.artist %>">
-    <button>Update</button>
-</form>
+    <form action="/tattoos/<%= tattoo.id %>" method="post">
+        <input type="hidden" value="put" name="_method">
+        <label for="">TITLE</label>
+        <input type="text" name="title" value="<%= tattoo.title %>">
+        <label for="">IMAGE URL</label>
+        <input type="text" name="image_url" value="<%= tattoo.image_url %>">
+        <label for="">TATTOO ARTIST</label>
+        <input type="text" name="artist" value="<%= tattoo.artist %>">
+        
+        <label for="">CATEGORY</label>
+        <select name="category" id="category" value="<%= tattoo.category %>">
+            <option value="<%= tattoo.category %>"><%= tattoo.category.toUpperCase() %></option>
+            <option value="floral">FLORAL</option>
+            <option value="animals">ANIMALS</option>
+            <option value="nature">NATURE</option>
+            <option value="food">FOOD</option>
+            <option value="geometric">GEOMETRIC</option>
+            <option value="lettering">LETTERING</option>
+            <option value="portrait">PORTRAIT</option>
+            <option value="other">OTHER</option>
+        </select>
+
+        <button>Update</button>
+    </form>
+</div>

@@ -1,25 +1,24 @@
-<h2>Share a tattoo</h2>
+<div class="form">
+    <h2>Share a tattoo</h2>
 
-<form action="/tattoos" method="post">
-    <label for="">Title</label>
-    <input type="text" name="title">
-    <label for="">Image URL</label>
-    <input type="text" name="image_url">
-    <label for="">Category</label>
+    <form action="/tattoos" method="post">
+        <input type="text" name="title" placeholder="TITLE OF POST">
+        <input type="text" name="image_url" placeholder="IMAGE URL">
+        <input type="text" name="artist" placeholder="TATTOO ARTIST">
 
-    <select name="category" id="category">
-        <option selected="true" disabled="true">SELECT</option>
-        <option value="floral">FLORAL</option>
-        <option value="other_animals">ANIMALS</option>
-        <option value="nature">NATURE</option>
-        <option value="food">FOOD</option>
-        <option value="geometric">GEOMETRIC</option>
-        <option value="lettering">LETTERING</option>
-        <option value="portrait">PORTRAIT</option>
-        <option value="other">OTHER</option>
-    </select>
+        <select name="category" id="category">
+            <option selected="true" disabled="true">CATEGORY</option>
+            <option value="floral">FLORAL</option>
+            <option value="other_animals">ANIMALS</option>
+            <option value="nature">NATURE</option>
+            <option value="food">FOOD</option>
+            <option value="geometric">GEOMETRIC</option>
+            <option value="lettering">LETTERING</option>
+            <option value="portrait">PORTRAIT</option>
+            <option value="other">OTHER</option>
+        </select>
 
-    <label for="">Tattoo Artist</label>
-    <input type="text" name="artist">
-    <button>Share</button>
-</form>
+
+        <button>Share</button>
+    </form>
+</div>

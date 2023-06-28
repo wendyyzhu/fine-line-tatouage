@@ -5,49 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400&display=swap" rel="stylesheet">
 </head>
 <body>
     <a href="/"><img class = "logo" src="../images/Logo.jpg" alt=""></a>
     
     <div class="navbar">
-        <a href="/">Home</a>
-        <a href="/user">My Profile</a>
-        <a href="/tattoos">Share a tattoo</a>
+        <a class="nav" href="/">HOME</a>
+        <a class="nav" href="/user">MY PROFILE</a>
+        <a class="nav" href="/tattoos">SHARE A TATTOO</a>
 
         <div class="dropdown">
-            <button class="dropbtn">Categories
+            <button class="dropbtn" id="nav">CATEGORY
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content" name="category" >
-                <a href="/category/floral">FLORAL</a>
-                <a href="/category/animals">ANIMALS</a>
-                <a href="/category/nature">NATURE</a>
-                <a href="/category/food">FOOD</a>
-                <a href="/category/geometric">GEOMETRIC</a>
-                <a href="/category/lettering">LETTERING</a>
-                <a href="/category/portrait">PORTRAIT</a>
-                <a href="/category/other">OTHER</a>
+                <a class="nav" href="/category/floral">FLORAL</a>
+                <a class="nav" href="/category/animals">ANIMALS</a>
+                <a class="nav" href="/category/nature">NATURE</a>
+                <a class="nav" href="/category/food">FOOD</a>
+                <a class="nav" href="/category/geometric">GEOMETRIC</a>
+                <a class="nav" href="/category/lettering">LETTERING</a>
+                <a class="nav" href="/category/portrait">PORTRAIT</a>
+                <a class="nav" href="/category/other">OTHER</a>
             </div>
         </div>
 
 
 
         <% if (!userId) {%>
-            <a href="/login">Login</a>
-            <a href="/signup">Sign Up</a>
+            <a class="login-btn" href="/login">LOGIN</a>
+            <a class="signup-btn" href="/signup">SIGN UP</a>
         <% } else { %> 
             <form action="/logout" method="post">
             <input type="hidden" name="_method" value="delete">
-            <button class="logout-btn">Logout</button>
+            <button class="logout-btn">LOGOUT</button>
             </form>
         <% } %>            
 
     </div>
     
+
+    <div class="mob-nav">
+
+        <div class="dropdown-mob">
+            <button class="dropbtn-mob" id="nav">MENU
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content-mob" name="category" >
+                <a class="nav" href="/">HOME</a>
+                <a class="nav" href="/user">MY PROFILE</a>
+                <a class="nav" href="/tattoos">SHARE A TATTOO</a>
+                <label class="nav" for="">CATEGORY</label>
+                <ul>
+                    <li><a class="nav" href="/category/floral">FLORAL</a></li>
+                    <li><a class="nav" href="/category/animals">ANIMALS</a></li>
+                    <li><a class="nav" href="/category/nature">NATURE</a></li>
+                    <li><a class="nav" href="/category/food">FOOD</a></li>
+                    <li><a class="nav" href="/category/geometric">GEOMETRIC</a></li>
+                    <li><a class="nav" href="/category/lettering">LETTERING</a></li>
+                    <li><a class="nav" href="/category/portrait">PORTRAIT</a></li>
+                    <li><a class="nav" href="/category/other">OTHER</a></li>
+                </ul>
+
+                <% if (!userId) {%>
+                    <a class="login-btn" href="/login">LOGIN</a>
+                    <a class="signup-btn" href="/signup">SIGN UP</a>
+                <% } else { %> 
+                    <form action="/logout" method="post">
+                    <input type="hidden" name="_method" value="delete">
+                    <button class="logout-btn">LOGOUT</button>
+                    </form>
+                <% } %>  
+
+            </div>
+        </div>
+    </div>
+
+
+    
     <%- body %>
 
     <footer>
-        <p>&copy; 2023 Fine Line Tatouage</p>
+        <p>&copy; 2023 FINE LINE Tatouage</p>
+        <a href="#"><p>Back to top</p></a>
     </footer>
 
 </body>

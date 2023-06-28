@@ -23,9 +23,23 @@
         <% } else { %>
             <p></p>
         <% } %>
+        
+        <form action="/tattoos/like/<%= tattoo.id %>" method="post">
+            <input type="hidden" value="put" name="_method">
+            <p><%= tattoo.likes %></p><button>Like</button>
+        </form>
+
 
     </section>
     <img class = "show-image" src="<%= tattoo.image_url %>" alt="<%= tattoo.title %>">
 </main>    
 
+<h2>You may also be interested in...</h2>
 
+<main>
+    <% for (let similarTattoo of similarTattoos) {%>
+    
+        <a href="/tattoos/<%= similarTattoo.id %>"><img class = "grid-image" src="<%= similarTattoo.image_url %>" alt="<%= similarTattoo.title %>"></a>
+        
+    <% } %>
+</main>

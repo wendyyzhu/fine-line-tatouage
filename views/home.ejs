@@ -8,4 +8,13 @@
     <% } %>
 </main>
 
+<h2>Newly added</h2>
+
+<main>
+    <% for (let newTattoo of newTattoos) {%>
+    
+        <a href="/tattoos/<%= newTattoo.id %>"><img class = "grid-image" src="<%= newTattoo.image_url %>" alt="<%= newTattoo.title %>"></a>
+        
+    <% } %>
+</main>
 

@@ -14,11 +14,11 @@ router.post("/", ensureLoggedIn, (req, res) => {
     let artist = req.body.artist
     let datePosted = new Date().toLocaleDateString();
 
-    const sql = `INSERT INTO tattoos (title, image_url, category, artist, user_id, date_posted) 
-                VALUES ($1, $2, $3, $4, $5, $6)
+    const sql = `INSERT INTO tattoos (title, image_url, category, artist, user_id, date_posted, likes) 
+                VALUES ($1, $2, $3, $4, $5, $6, $7)
                 RETURNING id;
                 `
-    db.query(sql, [title, imageUrl, category, artist, req.session.userId, datePosted], (err, dbRes) => {
+    db.query(sql, [title, imageUrl, category, artist, req.session.userId, datePosted, 0], (err, dbRes) => {
         if (err) {
             console.log(err)
         }
@@ -37,7 +37,12 @@ router.get("/:id", ensureLoggedIn, (req, res) => {
             console.log(err)
         }
         let tattoo = dbRes.rows[0]
-        res.render("show", {tattoo: tattoo})
+        let category = dbRes.rows[0].category 
+        let sql1 = `SELECT * FROM tattoos WHERE category = '${category}';`
+        db.query(sql1, (err, categoryRes) => {
+            let similarTattoos = categoryRes.rows
+            res.render("show", {tattoo: tattoo, similarTattoos: similarTattoos})
+        })
     })
 })
 

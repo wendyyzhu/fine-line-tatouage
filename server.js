@@ -78,7 +78,6 @@ app.get("/category/floral", ensureLoggedIn, (req, res) => {
     if (err) {
       console.log(err)
     }
-    console.log(dbRes.rows)
     let tattoos = dbRes.rows
     res.render("floral", {tattoos: tattoos})
   })
@@ -92,9 +91,15 @@ app.get("/category/animals", ensureLoggedIn, (req, res) => {
     if (err) {
       console.log(err)
     }
-    console.log(dbRes.rows)
     let tattoos = dbRes.rows
     res.render("animals", {tattoos: tattoos})
+  })
+})
+
+app.put("/tattoos/like/:id", (req, res) => {
+  const sql = `UPDATE tattoos SET likes = likes + 1 WHERE id = $1;`
+  db.query(sql, [req.params.id], (err, dbRes) => {
+    res.redirect(`/tattoos/${req.params.id}`)
   })
 })
 

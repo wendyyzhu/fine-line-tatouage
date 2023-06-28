@@ -2,7 +2,7 @@
     <section>
         
         <h2><%= tattoo.title.toUpperCase() %></h2>
-        <h3>Tattooed by <%= tattoo.artist.toUpperCase() %></h3>
+        <h3>Tattooed by <a href="/artist/<%= tattoo.artist %>"><%= tattoo.artist.toUpperCase() %></a></h3>
 
         <% if (userId === tattoo.user_id) {%>
             <h4>Shared by you</h4>

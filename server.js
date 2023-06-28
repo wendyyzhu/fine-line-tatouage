@@ -13,6 +13,7 @@ const sessionsRouter = require("./routes/sessions.js")
 const indexRouter = require("./routes/index.js")
 const tattoosRouter = require("./routes/tattoos.js")
 const signupRouter = require("./routes/signup.js")
+const userRouter = require("./routes/user.js")
 
 const setUser = require("./middlewares/set_user.js")
 const ensureLoggedIn = require("./middlewares/ensure_logged_in.js")
@@ -52,46 +53,50 @@ app.use("/signup", signupRouter)
 
 app.use("/tattoos", tattoosRouter)
 
+app.use("/user", userRouter)
 
-app.get("/user", ensureLoggedIn, (req, res) => {
-  let userId = req.session.userId
-  const sql = `SELECT * FROM users 
-              JOIN tattoos ON users.id = tattoos.user_id 
-              WHERE tattoos.user_id = $1
+
+app.get("/artist/:id", ensureLoggedIn, (req, res) => {
+  const sql = `SELECT * FROM tattoos 
+              WHERE artist = $1
               ORDER BY tattoos.id desc;`
-  db.query(sql, [userId], (err, dbRes) => {
+  db.query(sql, [req.params.id], (err, dbRes) => {
     if (err) {
       console.log(err)
     }
     let tattoos = dbRes.rows
-    let username = dbRes.rows[0].username
-    res.render("profile", {tattoos: tattoos, username: username})
+    let artist = dbRes.rows[0].artist
+    res.render("artist", {tattoos: tattoos, artist: artist})
   })
 })
 
-app.get("/user/:id", ensureLoggedIn, (req, res) => {
-    let userId = req.params.id
-    const sql = `SELECT * FROM users 
-                JOIN tattoos ON users.id = tattoos.user_id 
-                WHERE users.username = $1
-                ORDER BY tattoos.id desc;`
-    db.query(sql, [userId], (err, dbRes) => {
-      if (err) {
-        console.log(err)
-      }
-      let tattoos = dbRes.rows
-      let username = dbRes.rows[0].username
-      res.render("users", {tattoos: tattoos, username: username})
-    })
+app.get("/category/floral", ensureLoggedIn, (req, res) => {
+  const sql = `SELECT * FROM tattoos 
+              WHERE category = 'floral'
+              ORDER BY tattoos.id desc;`
+  db.query(sql, (err,dbRes) => {
+    if (err) {
+      console.log(err)
+    }
+    console.log(dbRes.rows)
+    let tattoos = dbRes.rows
+    res.render("floral", {tattoos: tattoos})
+  })
 })
 
-
-app.get("/category/:id", (req, res) => {
-  let category = req.params
-  console.log(category)
-
+app.get("/category/animals", ensureLoggedIn, (req, res) => {
+  const sql = `SELECT * FROM tattoos 
+              WHERE category = 'animals'
+              ORDER BY tattoos.id desc;`
+  db.query(sql, (err,dbRes) => {
+    if (err) {
+      console.log(err)
+    }
+    console.log(dbRes.rows)
+    let tattoos = dbRes.rows
+    res.render("animals", {tattoos: tattoos})
+  })
 })
-
 
 app.listen(port, () => {
     console.log(`listening on port ${port}`)

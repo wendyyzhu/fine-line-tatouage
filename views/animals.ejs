@@ -1,0 +1,9 @@
+<h2>Animal Tattoos</h2>
+
+<main>
+    <% for (let tattoo of tattoos) {%>
+    
+        <a href="/tattoos/<%= tattoo.id %>"><img class = "grid-image" src="<%= tattoo.image_url %>" alt="<%= tattoo.title %>"></a>
+        
+    <% } %>
+</main>

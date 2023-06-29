@@ -14,7 +14,7 @@ router.post("/", (req, res) => {
     let saltRounds = 10
     let sql1 = `SELECT * FROM users where email = $1 or username = $2;`
     db.query(sql1, [email, username], (err, dbRes) => {
-        if (dbRes.rows === 0) {
+        if (dbRes.rows.length === 0) {
             bcrypt.genSalt(saltRounds, (err, salt) => {
                 if (err) {
                     console.log(err)

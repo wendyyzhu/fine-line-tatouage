@@ -26,7 +26,6 @@ router.post("/", ensureLoggedIn, (req, res) => {
     })
 })
 
-
 router.get("/:id", ensureLoggedIn, (req, res) => {
     const sql = `SELECT * FROM users 
                 JOIN tattoos ON users.id = tattoos.user_id 

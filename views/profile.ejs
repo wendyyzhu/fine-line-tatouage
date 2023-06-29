@@ -7,3 +7,13 @@
         
     <% } %>
 </main>
+
+<h2>Tattoos you're loving:</h2>
+
+<main>
+    <% for (let likedTattoo of likedTattoos) {%>
+    
+        <a href="/tattoos/<%= likedTattoo.id %>"><img class = "grid-image" src="<%= likedTattoo.image_url %>" alt="<%= likedTattoo.title %>"></a>
+        
+    <% } %>
+</main>

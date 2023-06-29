@@ -9,6 +9,27 @@
         <% } else { %>
             <h4>Shared by <a href="/user/<%= tattoo.username %>"><%= tattoo.username.toUpperCase() %></a></h4>
         <% } %>
+
+
+        <h3>COMMENTS</h3> 
+        
+        <% for (let comment of comments) {%>
+            <div class="comment-container">
+            <p><%=comment.username.toUpperCase() %>: <%= comment.comment%></p>
+            <% if (comment.userposted_id === userId) {%>
+                <form action="/tattoos/comments/<%= comment.id %>" method="post">
+                    <input type="hidden" value="delete" name="_method">
+                    <button>Delete</button>
+                </form>
+            <% } %>
+            </div>
+        <% } %>
+        <form action="/tattoos/comments/<%= tattoo.id %>" method="post">
+            <input type="text" name="comments" placeholder="COMMENT HERE">
+            <button>POST</button>
+        </form>
+
+
         
         <% if (alreadyLiked) { %>
             <form action="/tattoos/like/<%= tattoo.id %>" method="post">
@@ -32,8 +53,6 @@
                 <button>Delete</button>
             </form>
             <a href="/tattoos/<%= tattoo.id %>/edit">Edit</a>
-        <% } else { %>
-            <p></p>
         <% } %>
 
         <h5>POSTED ON: <%= tattoo.date_posted %></h5>

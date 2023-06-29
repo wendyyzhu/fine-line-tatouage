@@ -6,7 +6,8 @@ CREATE TABLE tattoos (
     image_url TEXT,
     category TEXT, 
     artist TEXT,
-    user_id INTEGER
+    user_id INTEGER,
+
 );
 
 CREATE TABLE users (
@@ -14,6 +15,19 @@ CREATE TABLE users (
     email TEXT, 
     username TEXT,
     password_digest TEXT
+);
+
+CREATE TABLE likedPosts (
+        id SERIAL PRIMARY KEY, 
+        tattoo_id INTEGER,
+        userliked_id INTEGER
+);
+
+CREATE TABLE comments (
+        id SERIAL PRIMARY KEY,
+        comment TEXT,
+        userposted_id INTEGER, 
+        postedon_id INTEGER
 );
 
 ALTER TABLE tattoos ADD column user_id INTEGER;

@@ -38,7 +38,8 @@ router.get("/:id", ensureLoggedIn, (req, res) => {
         }
         let tattoo = dbRes.rows[0]
         let category = dbRes.rows[0].category 
-        let sql1 = `SELECT * FROM tattoos 
+        
+        const sql1 = `SELECT * FROM tattoos 
                     WHERE category = '${category}' 
                     ORDER BY id desc 
                     LIMIT 12;`
@@ -46,16 +47,23 @@ router.get("/:id", ensureLoggedIn, (req, res) => {
             let similarTattoos = categoryRes.rows
             let tattooId = req.params.id
             let userLikedId = req.session.userId
-            
-            const sql2 = `SELECT * FROM likedposts WHERE tattoo_id = $1 and userliked_id = $2;`
-            db.query(sql2, [tattooId, userLikedId], (err, likeRes) => {
-                if (likeRes.rows.length !== 0) {
-                    let alreadyLiked = true
-                    res.render("show", {tattoo: tattoo, similarTattoos: similarTattoos, alreadyLiked: alreadyLiked})
-                } else {
-                    let alreadyLiked = undefined
-                    res.render("show", {tattoo: tattoo, similarTattoos: similarTattoos, alreadyLiked: alreadyLiked})
-                }
+
+            const sql2 = `SELECT comments.id, comments.comment, comments.userposted_id, comments.postedon_id, users.username
+                        FROM comments JOIN users ON users.id = userposted_id 
+                        WHERE comments.postedon_id = $1
+                        ORDER BY id asc;`
+            db.query(sql2, [req.params.id], (err, commentRes) => {
+                let comments = commentRes.rows
+                const sql3 = `SELECT * FROM likedposts WHERE tattoo_id = $1 and userliked_id = $2;`
+                db.query(sql3, [tattooId, userLikedId], (err, likeRes) => {
+                    if (likeRes.rows.length !== 0) {
+                        let alreadyLiked = true
+                        res.render("show", {tattoo: tattoo, similarTattoos: similarTattoos, alreadyLiked: alreadyLiked, comments: comments})
+                    } else {
+                        let alreadyLiked = undefined
+                        res.render("show", {tattoo: tattoo, similarTattoos: similarTattoos, alreadyLiked: alreadyLiked, comments: comments})
+                    }
+                })
             })
         })
     })
@@ -142,6 +150,34 @@ db.query(sql, [tattooId, userLikedId], (err, dbRes) => {
       db.query(sql1, [tattooId], (err, likeRes) => {
         res.redirect(`/tattoos/${req.params.id}`)
       })
+    })
+})
+
+router.post("/comments/:id", (req, res) => {
+    let comment = req.body.comments
+    let userCommentedId = req.session.userId
+    let tattooId = req.params.id
+    const sql = `INSERT INTO comments (comment, userposted_id, postedon_id)
+                VALUES ($1, $2, $3);`
+    db.query(sql, [comment, userCommentedId, tattooId], (err, dbRes) => {
+        if (err) {
+            console.log(err)
+        } 
+        res.redirect(`/tattoos/${tattooId}`)
+    })
+})
+
+router.delete("/comments/:id", (req, res) => {
+    const sql = `SELECT * FROM comments WHERE id = $1`
+    db.query(sql, [req.params.id], (err, dbRes) => {
+        let tattooId = dbRes.rows[0].postedon_id
+        const sql1 = `DELETE FROM comments WHERE id = $1;`
+        db.query(sql1, [req.params.id], (err, deleteRes) => {
+            if (err) {
+                console.log(err)
+            }
+            res.redirect(`/tattoos/${tattooId}`)
+        })
     })
 })
 

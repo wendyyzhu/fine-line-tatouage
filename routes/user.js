@@ -15,9 +15,21 @@ router.get("/", ensureLoggedIn, (req, res) => {
       }
       let tattoos = dbRes.rows
       let username = dbRes.rows[0].username
-      res.render("profile", {tattoos: tattoos, username: username})
+      // res.render("profile", {tattoos: tattoos, username: username})
+      const sql1 = `SELECT * FROM likedposts 
+      JOIN tattoos ON likedposts.tattoo_id = tattoos.id 
+      WHERE likedposts.userliked_id = $1 
+      ORDER BY likedposts.id desc
+      LIMIT 12;`
+      db.query(sql1, [userId], (err, likeRes) => {
+        let likedTattoos = likeRes.rows
+        res.render("profile", {tattoos: tattoos, username: username, likedTattoos: likedTattoos})
+        })
     })
 })
+
+
+
   
 router.get("/:username", ensureLoggedIn, (req, res) => {
     let userId = req.params.username

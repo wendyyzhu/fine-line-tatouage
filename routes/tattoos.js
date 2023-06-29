@@ -44,7 +44,19 @@ router.get("/:id", ensureLoggedIn, (req, res) => {
                     LIMIT 12;`
         db.query(sql1, (err, categoryRes) => {
             let similarTattoos = categoryRes.rows
-            res.render("show", {tattoo: tattoo, similarTattoos: similarTattoos})
+            let tattooId = req.params.id
+            let userLikedId = req.session.userId
+            
+            const sql2 = `SELECT * FROM likedposts WHERE tattoo_id = $1 and userliked_id = $2;`
+            db.query(sql2, [tattooId, userLikedId], (err, likeRes) => {
+                if (likeRes.rows.length !== 0) {
+                    let alreadyLiked = true
+                    res.render("show", {tattoo: tattoo, similarTattoos: similarTattoos, alreadyLiked: alreadyLiked})
+                } else {
+                    let alreadyLiked = undefined
+                    res.render("show", {tattoo: tattoo, similarTattoos: similarTattoos, alreadyLiked: alreadyLiked})
+                }
+            })
         })
     })
 })
@@ -95,6 +107,41 @@ router.put("/:id", ensureLoggedIn, (req, res) => {
         WHERE id = $5;`
     db.query(sql, [title, category, artist, imageUrl, id], (err, dbRes) => {
         res.redirect(`/tattoos/${req.params.id}`)
+    })
+})
+
+router.put("/like/:id", ensureLoggedIn, (req, res) => {
+    let tattooId = req.params.id
+    let userLikedId = req.session.userId
+  
+    const sql = `SELECT * FROM likedposts WHERE tattoo_id = $1 and userliked_id = $2;`
+  
+    db.query(sql, [tattooId, userLikedId], (err, dbRes) => {
+      if (dbRes.rows.length === 0) {
+        const sql1 = `INSERT into likedposts (tattoo_id, userliked_id) 
+        VALUES ($1, $2);`
+        db.query(sql1, [tattooId, userLikedId], (err, likedRes) => {
+            const sql2 = `UPDATE tattoos SET likes = likes + 1 WHERE id = $1;`
+            db.query(sql2, [req.params.id], (err, countRes) => {
+            res.redirect(`/tattoos/${req.params.id}`)
+            })
+          })
+        } else {
+        res.redirect(`/tattoos/${req.params.id}`)
+      }
+    })
+ })
+  
+router.delete("/like/:id", ensureLoggedIn, (req, res) => {
+    let tattooId = req.params.id 
+    let userLikedId = req.session.userId
+    const sql = `DELETE FROM likedposts 
+                WHERE tattoo_id = $1 and userliked_id = $2;`
+db.query(sql, [tattooId, userLikedId], (err, dbRes) => {
+      const sql1 = `UPDATE tattoos SET likes = likes - 1 WHERE id = $1;`
+      db.query(sql1, [tattooId], (err, likeRes) => {
+        res.redirect(`/tattoos/${req.params.id}`)
+      })
     })
 })
 

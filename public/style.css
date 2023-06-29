@@ -89,20 +89,32 @@ footer {
     padding: 14px 16px;
 }
 
-.like-btn {
+.like-btn, .dislike-btn {
     text-align: center;
     border: 2px solid black;
     height: 30px;
     width: 30px;
     border-radius: 50%;
-    background-color: mistyrose;
+
     padding: 0;
     padding-top: 4px;
     margin: 0 auto;
 }
 
+.like-btn {
+    background-color: mistyrose;
+}
+
 .like-btn:hover {
     background-color: red;
+}
+
+.dislike-btn {
+    background-color: red;
+}
+
+.dislike-btn:hover {
+    background-color: mistyrose;
 }
 
 /* .like-btn:active {

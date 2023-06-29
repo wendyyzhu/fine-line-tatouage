@@ -55,7 +55,6 @@ app.use("/tattoos", tattoosRouter)
 
 app.use("/user", userRouter)
 
-
 app.get("/artist/:id", ensureLoggedIn, (req, res) => {
   const sql = `SELECT * FROM tattoos 
               WHERE artist = $1
@@ -88,28 +87,6 @@ app.get("/category/:category", ensureLoggedIn, (req, res) => {
     }
     let categoryName = dbRes.rows[0].category
     res.render("category", {tattoos: tattoos, categoryName: categoryName})
-  })
-})
-
-app.put("/tattoos/like/:id", ensureLoggedIn, (req, res) => {
-  let tattooId = req.params.id
-  let userLikedId = req.session.userId
-
-  const sql = `SELECT * FROM likedposts WHERE tattoo_id = $1 and userliked_id = $2;`
-
-  db.query(sql, [tattooId, userLikedId], (err, dbRes) => {
-    if (dbRes.rows.length === 0) {
-      const sql1 = `INSERT into likedposts (tattoo_id, userliked_id) 
-      VALUES ($1, $2);`
-      db.query(sql1, [tattooId, userLikedId], (err, likedRes) => {
-          const sql2 = `UPDATE tattoos SET likes = likes + 1 WHERE id = $1;`
-          db.query(sql2, [req.params.id], (err, countRes) => {
-          res.redirect(`/tattoos/${req.params.id}`)
-          })
-        })
-      } else {
-      res.redirect(`/tattoos/${req.params.id}`)
-    }
   })
 })
 

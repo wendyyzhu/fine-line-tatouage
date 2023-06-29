@@ -12,7 +12,6 @@ router.get("/", (req, res) => {
             console.log(err)
         }
         let tattoos = dbRes.rows
-        // res.render("home", {tattoos: tattoos})
         const sql1 = `SELECT * FROM tattoos 
         ORDER BY tattoos.id desc 
         LIMIT 12;`

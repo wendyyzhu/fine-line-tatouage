@@ -1,6 +1,6 @@
 *{
     box-sizing: border-box;
-    /* border: solid red 1px; */
+    border: solid red 1px;
 }
 
 body {
@@ -31,6 +31,17 @@ footer {
     display: flex;
     justify-content: space-between;
     background-color: rgb(209, 200, 195);
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px;
+}
+
+.back-to-top {
+    margin: 0px 0px;
+}
+
+.footer-link {
+    margin-block: auto; 
 }
 
 .header {

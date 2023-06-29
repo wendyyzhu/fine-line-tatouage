@@ -21,7 +21,7 @@ const ensureLoggedIn = require("./middlewares/ensure_logged_in.js")
 app.set("view engine", "ejs")
 
 app.use(express.static("public"))
-app.use(express.static(__dirname + "/public"))
+app.use('/images', express.static('images'));
 
 app.use(express.urlencoded({ extended: true }))
 
@@ -79,7 +79,6 @@ app.get("/category/:category", ensureLoggedIn, (req, res) => {
 
       console.log(err)
     }
-    console.log(dbRes.rows)
     let tattoos = dbRes.rows
     if (tattoos.length === 0) {
       res.redirect("/")

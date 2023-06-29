@@ -69,6 +69,19 @@ router.get("/:id", ensureLoggedIn, (req, res) => {
     })
 })
 
+router.get("/:id/edit", ensureLoggedIn, (req, res) => {
+    const sql = `SELECT * FROM tattoos WHERE id = $1`
+    db.query(sql, [req.params.id], (err, dbRes) => {
+        let tattoo = dbRes.rows[0]
+        let userId = dbRes.rows[0].user_id
+        if (req.session.userId === userId) {
+            res.render("edit.ejs", {tattoo: tattoo})
+        } else {
+            res.redirect("/")
+        }
+    })
+})
+
 router.delete("/:id", ensureLoggedIn, (req,res) => {
     const sql = `SELECT * FROM tattoos WHERE id = $1;`
     db.query(sql, [req.params.id], (err, dbRes) => {
@@ -81,19 +94,6 @@ router.delete("/:id", ensureLoggedIn, (req,res) => {
                 }
                 res.redirect("/")
             })
-        } else {
-            res.redirect("/")
-        }
-    })
-})
-
-router.get("/:id/edit", ensureLoggedIn, (req, res) => {
-    const sql = `SELECT * FROM tattoos WHERE id = $1`
-    db.query(sql, [req.params.id], (err, dbRes) => {
-        let tattoo = dbRes.rows[0]
-        let userId = dbRes.rows[0].user_id
-        if (req.session.userId === userId) {
-            res.render("edit", {tattoo: tattoo})
         } else {
             res.redirect("/")
         }
@@ -153,7 +153,7 @@ db.query(sql, [tattooId, userLikedId], (err, dbRes) => {
     })
 })
 
-router.post("/comments/:id", (req, res) => {
+router.post("/comments/:id", ensureLoggedIn, (req, res) => {
     let comment = req.body.comments
     let userCommentedId = req.session.userId
     let tattooId = req.params.id
@@ -167,7 +167,7 @@ router.post("/comments/:id", (req, res) => {
     })
 })
 
-router.delete("/comments/:id", (req, res) => {
+router.delete("/comments/:id", ensureLoggedIn, (req, res) => {
     const sql = `SELECT * FROM comments WHERE id = $1`
     db.query(sql, [req.params.id], (err, dbRes) => {
         let tattooId = dbRes.rows[0].postedon_id

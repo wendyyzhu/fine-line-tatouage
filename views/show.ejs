@@ -1,7 +1,7 @@
 <main class="show-wrapper">
     <section>
-        
         <h2 class = "tattoo-title"><%= tattoo.title.toUpperCase() %></h2>
+        <h5>POSTED ON: <%= tattoo.date_posted %></h5>
         <h3>Tattooed by <a href="/artist/<%= tattoo.artist %>"><%= tattoo.artist.toUpperCase() %></a></h3>
 
         <% if (userId === tattoo.user_id) {%>
@@ -10,56 +10,53 @@
             <h4>Shared by <a href="/user/<%= tattoo.username %>"><%= tattoo.username.toUpperCase() %></a></h4>
         <% } %>
 
-
-        <h3>COMMENTS</h3> 
-        
-        <% for (let comment of comments) {%>
-            <div class="comment-container">
-            <p><%=comment.username.toUpperCase() %>: <%= comment.comment%></p>
-            <% if (comment.userposted_id === userId) {%>
-                <form action="/tattoos/comments/<%= comment.id %>" method="post">
-                    <input type="hidden" value="delete" name="_method">
-                    <button>Delete</button>
-                </form>
+        <div class="comment-container">  
+        <h3 class="comment-heading">COMMENTS</h3> 
+            <% for (let comment of comments) {%>
+                <div class="comment-wrapper">
+                <p><%=comment.username.toUpperCase()%> SAID: <%= comment.comment%></p>
+                <% if (comment.userposted_id === userId) {%>
+                    <form action="/tattoos/comments/<%= comment.id %>" method="post">
+                        <input type="hidden" value="delete" name="_method">
+                        <button class="delete-btn"><i class="bi bi-trash"></i></button>
+                    </form>
+                </div>
+                <% } %>
             <% } %>
-            </div>
-        <% } %>
-        <form action="/tattoos/comments/<%= tattoo.id %>" method="post">
-            <input type="text" name="comments" placeholder="COMMENT HERE">
-            <button>POST</button>
-        </form>
-
-
+        </div>  
         
-        <% if (alreadyLiked) { %>
-            <form action="/tattoos/like/<%= tattoo.id %>" method="post">
-                <input type="hidden" value="delete" name="_method">
-                <button class="dislike-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/></svg></button>
-                <p><%= tattoo.likes %> LIKES</p>
-            </form>
-        <% } else { %>
-            <form action="/tattoos/like/<%= tattoo.id %>" method="post">
-                <input type="hidden" value="put" name="_method">
-                <button class="like-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/></svg></button>
-                <p><%= tattoo.likes %> LIKES</p>
-            </form>
-        <% } %>
-
-        <% if (userId === tattoo.user_id) {%>
-            <form action="/tattoos/<%= tattoo.id %>" method="post">
-                <input type="hidden" value="delete" name="_method">
-                <button>Delete</button>
-            </form>
-            <a href="/tattoos/<%= tattoo.id %>/edit">Edit</a>
-        <% } %>
-
-        <h5>POSTED ON: <%= tattoo.date_posted %></h5>
-
+        <form class = "comment-form" action="/tattoos/comments/<%= tattoo.id %>" method="post">
+            <input class = "comment-input" type="text" name="comments" placeholder="COMMENT HERE">
+            <button class="comment-btn">ADD COMMENT</button>
+        </form>
     </section>
     <img class = "show-image" src="<%= tattoo.image_url %>" alt="<%= tattoo.title %>">
 </main>    
+
+<div class = "actions-bar">    
+    <% if (alreadyLiked) { %>
+        <form action="/tattoos/like/<%= tattoo.id %>" method="post">
+            <input type="hidden" value="delete" name="_method">
+            <button class="dislike-btn"><i class="bi bi-heart"></i></button>
+        </form>
+    <% } else { %>
+        <form action="/tattoos/like/<%= tattoo.id %>" method="post">
+            <input type="hidden" value="put" name="_method">
+            <button class="like-btn"><i class="bi bi-heart" style="font-size: 1rem;"></i></button>
+        </form>
+    <% } %>
+
+    <p><%= tattoo.likes %> LIKES</p>
+
+    <% if (userId === tattoo.user_id) {%>
+        <form action="/tattoos/<%= tattoo.id %>" method="post">
+            <input type="hidden" value="delete" name="_method">
+            <button class="delete-btn"><i class="bi bi-trash" style="font-size: 1.5rem;"></i></button>
+        </form>
+        <a class="edit-btn" href="/tattoos/<%= tattoo.id %>/edit"><i class="bi bi-pencil-square" style="font-size: 1.5rem;"></i></a>
+    <% } %>
+    <a class="add-btn" href="/tattoos"><i class="bi bi-plus-square" style="font-size: 1.5rem;"></i></a>
+</div>
 
 <h2>You may also be interested in...</h2>
 

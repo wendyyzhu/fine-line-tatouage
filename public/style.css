@@ -7,6 +7,7 @@ body {
     width: 80%;
     margin: 0 auto;
     font-family: 'Josefin Sans', sans-serif;
+    /* background-color: rgb(236 236 239); */
 }
 
 img {
@@ -18,22 +19,32 @@ a {
     text-decoration: none;
 }
 
-a:visited {
-    text-decoration: none;
-    color:blue;
+.add-btn {
+    color: black;
 }
 
-a:hover {
-    color:blueviolet;
+a:visited {
+    text-decoration: none;
+}
+
+.share-btn, .update-btn {
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.comment-btn {
+    display: block;
+    margin: 0 auto;
 }
 
 footer {
     display: flex;
     justify-content: space-between;
-    background-color: rgb(209, 200, 195);
-    padding-left: 10px;
-    padding-right: 10px;
+    background-color: rgb(217 206 198);
+    padding: 10px;
     margin-bottom: 10px;
+    border: 1px solid black;
 }
 
 .back-to-top {
@@ -44,9 +55,9 @@ footer {
     margin-block: auto; 
 }
 
-.header {
+/* .header {
     display: flex;
-}
+} */
 
 .grid-image {
     width: 100%;
@@ -68,7 +79,8 @@ footer {
 }
 
 .tattoo-title {
-    margin-top: 0;
+    margin: 0;
+    margin-bottom: 2px;
 }
 
 .login-btn {
@@ -87,6 +99,37 @@ footer {
     font-size: 13px;
     cursor: pointer;
     padding: 14px 16px;
+}
+
+.delete-btn {
+    border: none;
+    background: none; 
+    font-family: 'Josefin Sans', sans-serif;
+    cursor: pointer;
+    font-size: 15px;
+    color: black;
+    display: inline;
+}
+
+a {
+    text-decoration: none;
+}
+
+.edit-btn {
+    color: black;
+}
+
+.comment-heading {
+    padding-top: 10px;
+    margin-bottom: 5px;
+}
+
+a:hover, .delete-btn:hover, .comment-btn:hover {
+    color:gray;
+}
+
+p {
+    margin: 5px;
 }
 
 .like-btn, .dislike-btn {
@@ -117,20 +160,55 @@ footer {
     background-color: mistyrose;
 }
 
-/* .like-btn:active {
-    background-color: red;
-} */
-  
-.form {
-    width: 50%;
-    border: 2px solid black;
-    margin: 0 auto;
+.actions-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgb(217 206 198);
+    margin-top: 20px;
+    padding: 5px;
+    border: 1px solid black;
+}
+
+
+.comment-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-form {
+    display: inline-block;
 }
 
 input {
-    display: block;
-    width: 50%;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    line-height: 20px;
 }
+
+.comment-input {
+    width: 0 auto;
+    height: 100%;
+    margin-top: 10px;
+}
+
+.comment-btn {
+    margin-top: 8px;
+    border: none;
+    background: none;
+}
+
+.form {
+    border: 1px solid black;
+    margin: 0 auto;
+    text-align: center;
+    width: 50%;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: rgb(247 243 239);
+}
+
 
 .mob-nav {
     display: none;
@@ -139,8 +217,9 @@ input {
 .navbar {
     display: flex;
     justify-content: space-between;
-    background-color: rgb(209, 200, 195);
+    background-color: rgb(217 206 198);
     margin-bottom: 20px;
+    border: 1px black solid
 
 }
 
@@ -152,7 +231,6 @@ input {
     font-size: 13px;
 }
 
-/* Links inside the navbar */
 .navbar a {
     float: left;
     color: black;
@@ -161,13 +239,11 @@ input {
     text-decoration: none;
 }
   
-  /* The dropdown container */
 .dropdown {
     float: left;
     overflow: hidden;
 }
-  
-/* Dropdown button */
+
 .dropdown .dropbtn {
     font-size: 16px;
     border: none;
@@ -175,20 +251,18 @@ input {
     color: black;
     padding: 14px 16px;
     background-color: inherit;
-    font-family: inherit; /* Important for vertical align on mobile phones */
-    margin: 0; /* Important for vertical align on mobile phones */
+    font-family: inherit; 
+    margin: 0; 
 }
   
-/* Add a red background color to navbar links on hover */
-.navbar a:hover, .dropdown:hover .dropbtn{
+.navbar a:hover, .dropdown:hover .dropbtn {
     background-color: lightgray;
 }
 
-.logout-btn:hover{
+.logout-btn:hover {
     background-color: lightgray;
 }
   
-/* Dropdown content (hidden by default) */
 .dropdown-content {
     display: none;
     position: absolute;
@@ -198,7 +272,6 @@ input {
     z-index: 1;
 }
   
-/* Links inside the dropdown */
 .dropdown-content a {
     float: none;
     color: black;
@@ -208,12 +281,13 @@ input {
     text-align: left;
 }
   
-/* Show the dropdown menu on hover */
-  .dropdown:hover .dropdown-content {
+.dropdown:hover .dropdown-content {
     display: block;
 }
 
-
+::placeholder {
+    text-align: center;
+}
 
 @media (min-width: 40rem) {
     main {
@@ -228,6 +302,10 @@ input {
     .show-wrapper {
         display: grid;
         grid-template-columns: 2fr 3fr;
+        align-items: center;
+        background-color: rgb(247 243 239);
+        border: 1px solid black;
+        text-align: center;
     }
 }
 
@@ -241,6 +319,10 @@ input {
     .show-wrapper {
         display: grid;
         grid-template-columns: 2fr 3fr;
+        align-items: center;
+        background-color: rgb(247 243 239);
+        border: 1px solid black;
+        text-align: center;
     }
 }
 
@@ -249,75 +331,65 @@ input {
         display: none;
     }
 
+    body {
+        margin: 0 auto;
+    }
+
     .mob-nav {
         display: block;
         background-color: rgb(209, 200, 195);
+        margin-bottom: 20px;
     }
     
-    /* Links inside the navbar */
     .mob-nav a, .mob-nav label{
         color: black;
         /* text-align: center; */
-        padding: 5px 8px;
+        padding: 5px 10px;
         text-decoration: none;
     }
 
     .mob-nav label {
         margin-top: 10px;
     }
-    
-  
-  /* The dropdown container */
-.dropdown-mob {
-    /* overflow: hidden; */
-}
-  
-/* Dropdown button */
-.dropdown-mob .dropbtn-mob {
-    font-size: 16px;
-    border: solid black 1px;
-    outline: none;
-    color: black;
-    padding: 14px 16px;
-    background-color: inherit;
-    font-family: inherit; /* Important for vertical align on mobile phones */
-    /* margin: 0; Important for vertical align on mobile phones */
-}
 
-.dropbtn-mob {
-    width: 100%;
-}
-  
-/* Add a red background color to navbar links on hover */
-.mob-nav a:hover, .dropdown-mob:hover .dropbtn-mob{
-    background-color: lightgray;
-}
+    .dropdown-mob .dropbtn-mob {
+        font-size: 16px;
+        border: solid black 1px;
+        outline: none;
+        color: black;
+        padding: 14px 16px;
+        background-color: inherit;
+        font-family: inherit; 
+    }
 
-.logout-btn:hover{
-    background-color: lightgray;
-}
+    .dropbtn-mob {
+        width: 100%;
+    }
   
-/* Dropdown content (hidden by default) */
-.dropdown-content-mob {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    width: 80%;
-    margin: 0 auto;
-    /* min-width: 160px; */
-    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
-    /* z-index: 1; */
-}
+    .mob-nav a:hover, .dropdown-mob:hover .dropbtn-mob{
+        background-color: lightgray;
+    }
+
+    .logout-btn:hover{
+        background-color: lightgray;
+    }
   
-/* Links inside the dropdown */
+    .dropdown-content-mob {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        width: 80%;
+        margin: 0 auto;
+    }
+  
     .dropdown-content-mob a, .dropdown-content-mob label {
         color: black;
         text-decoration: none;
         display: block;
         text-align: center;     
+        padding: 5px;
     }
   
-/* Show the dropdown menu on hover */
     .dropdown-mob:hover .dropdown-content-mob {
         display: block;
     }
@@ -335,5 +407,21 @@ input {
         margin: 0 auto;
     }
 
+    section {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        margin-bottom: 20px;
+        padding: 10px;
+        background-color: rgb(247 243 239);
+        border: 1px solid black;
+    }
 
+    .comment-input {
+        width: 50%;
+    }
+
+    .form {
+        width: 80%;
+    }
 }

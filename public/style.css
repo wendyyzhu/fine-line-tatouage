@@ -10,6 +10,12 @@ body {
     /* background-color: rgb(236 236 239); */
 }
 
+.banner {
+    width: 100%;
+    border: 1px black solid;
+    margin-bottom: 20px;
+}
+
 img {
     display: block;
     margin: auto;
@@ -134,30 +140,25 @@ p {
 
 .like-btn, .dislike-btn {
     text-align: center;
-    border: 2px solid black;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-
-    padding: 0;
-    padding-top: 4px;
+    border: none;
     margin: 0 auto;
+    background: none;
 }
 
 .like-btn {
-    background-color: mistyrose;
+    color: black;
 }
 
 .like-btn:hover {
-    background-color: red;
+    color: red;
 }
 
 .dislike-btn {
-    background-color: red;
+    color: red;
 }
 
 .dislike-btn:hover {
-    background-color: mistyrose;
+    color: black;
 }
 
 .actions-bar {

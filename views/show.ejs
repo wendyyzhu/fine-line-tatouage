@@ -1,3 +1,5 @@
+<img class="banner" src="../images/Banner.png" alt="">
+
 <main class="show-wrapper">
     <section>
         <h2 class = "tattoo-title"><%= tattoo.title.toUpperCase() %></h2>
@@ -37,12 +39,12 @@
     <% if (alreadyLiked) { %>
         <form action="/tattoos/like/<%= tattoo.id %>" method="post">
             <input type="hidden" value="delete" name="_method">
-            <button class="dislike-btn"><i class="bi bi-heart"></i></button>
+            <button class="dislike-btn"><i class="bi bi-heart" style="font-size: 1.5rem;"></i></button>
         </form>
     <% } else { %>
         <form action="/tattoos/like/<%= tattoo.id %>" method="post">
             <input type="hidden" value="put" name="_method">
-            <button class="like-btn"><i class="bi bi-heart" style="font-size: 1rem;"></i></button>
+            <button class="like-btn"><i class="bi bi-heart" style="font-size: 1.5rem;"></i></button>
         </form>
     <% } %>
 

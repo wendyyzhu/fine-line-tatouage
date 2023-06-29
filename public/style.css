@@ -1,6 +1,6 @@
 *{
     box-sizing: border-box;
-    border: solid red 1px;
+    /* border: solid red 1px; */
 }
 
 body {
@@ -91,13 +91,23 @@ footer {
 
 .like-btn {
     text-align: center;
-    border: none;
-    background: none;
+    border: 2px solid black;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background-color: mistyrose;
+    padding: 0;
+    padding-top: 4px;
+    margin: 0 auto;
 }
 
 .like-btn:hover {
     background-color: red;
 }
+
+/* .like-btn:active {
+    background-color: red;
+} */
   
 .form {
     width: 50%;

@@ -19,8 +19,8 @@ router.get("/", ensureLoggedIn, (req, res) => {
     })
 })
   
-router.get("/:id", ensureLoggedIn, (req, res) => {
-    let userId = req.params.id
+router.get("/:username", ensureLoggedIn, (req, res) => {
+    let userId = req.params.username
     const sql = `SELECT * FROM users 
                   JOIN tattoos ON users.id = tattoos.user_id 
                   WHERE users.username = $1

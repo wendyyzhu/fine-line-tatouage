@@ -70,36 +70,46 @@ app.get("/artist/:id", ensureLoggedIn, (req, res) => {
   })
 })
 
-app.get("/category/floral", ensureLoggedIn, (req, res) => {
+app.get("/category/:category", ensureLoggedIn, (req, res) => {
+  let category = req.params.category
   const sql = `SELECT * FROM tattoos 
-              WHERE category = 'floral'
+              WHERE category = $1
               ORDER BY tattoos.id desc;`
-  db.query(sql, (err,dbRes) => {
+  db.query(sql, [category], (err,dbRes) => {
     if (err) {
+
       console.log(err)
     }
+    console.log(dbRes.rows)
     let tattoos = dbRes.rows
-    res.render("floral", {tattoos: tattoos})
+    if (tattoos.length === 0) {
+      res.redirect("/")
+      return
+    }
+    let categoryName = dbRes.rows[0].category
+    res.render("category", {tattoos: tattoos, categoryName: categoryName})
   })
 })
 
-app.get("/category/animals", ensureLoggedIn, (req, res) => {
-  const sql = `SELECT * FROM tattoos 
-              WHERE category = 'animals'
-              ORDER BY tattoos.id desc;`
-  db.query(sql, (err,dbRes) => {
-    if (err) {
-      console.log(err)
-    }
-    let tattoos = dbRes.rows
-    res.render("animals", {tattoos: tattoos})
-  })
-})
+app.put("/tattoos/like/:id", ensureLoggedIn, (req, res) => {
+  let tattooId = req.params.id
+  let userLikedId = req.session.userId
 
-app.put("/tattoos/like/:id", (req, res) => {
-  const sql = `UPDATE tattoos SET likes = likes + 1 WHERE id = $1;`
-  db.query(sql, [req.params.id], (err, dbRes) => {
-    res.redirect(`/tattoos/${req.params.id}`)
+  const sql = `SELECT * FROM likedposts WHERE tattoo_id = $1 and userliked_id = $2;`
+
+  db.query(sql, [tattooId, userLikedId], (err, dbRes) => {
+    if (dbRes.rows.length === 0) {
+      const sql1 = `INSERT into likedposts (tattoo_id, userliked_id) 
+      VALUES ($1, $2);`
+      db.query(sql1, [tattooId, userLikedId], (err, likedRes) => {
+          const sql2 = `UPDATE tattoos SET likes = likes + 1 WHERE id = $1;`
+          db.query(sql2, [req.params.id], (err, countRes) => {
+          res.redirect(`/tattoos/${req.params.id}`)
+          })
+        })
+      } else {
+      res.redirect(`/tattoos/${req.params.id}`)
+    }
   })
 })
 

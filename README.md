@@ -14,7 +14,7 @@ Email: test@test.com
 <br>
 Password: testing
 
-<br>
+
 
 ### Planning 
 
@@ -74,8 +74,8 @@ When adding a post, the user will need to fill in the form below. At the moment,
 - HTML 
 - CSS
 - JavaScript
-- Express
-- Postgres
+- Express.js
+- PostgresSQL
 
 ### Dependencies used 
 - Bcrypt 

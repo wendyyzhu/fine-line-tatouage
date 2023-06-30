@@ -112,7 +112,7 @@ router.put("/:id", ensureLoggedIn, (req, res) => {
         SET title = $1, 
         category = $2, 
         artist = $3 
-        WHERE id = $5;`
+        WHERE id = $4;`
     db.query(sql, [title, category, artist, id], (err, dbRes) => {
         res.redirect(`/tattoos/${req.params.id}`)
     })

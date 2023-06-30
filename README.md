@@ -39,12 +39,12 @@ Upon clicking on anything on the home page, the user will be redirected to a log
 Once logged in, if the user clicks on an image, it will bring them to the post showing the following details: 
 - Title of the post 
 - When it was posted 
-- Who the tattoo artist is - clicking on the tattoo artist's name will bring up all the tattoos that the arist created. 
+- Who the tattoo artist is - clicking on the tattoo artist's name will bring up all the tattoos that the artist created. 
 - The user who shared the tattoo - if the user who shared the post is not the user who's logged in, then clicking on the user's name will show all the tattoos they've shared. 
 
-If the post was uploaded by the user who's logged in, the action bar will give the user the option to delete or edit the post. However, if the post does not belong to the user, there will only be the option to like the post or upload a new post. Once the user has liked a post, they cannot increase the number of likes by clicking it again, instead it will unlike that post. 
+If the post was uploaded by the user who's logged in, the action bar will give the user the option to delete or edit the post. However, if the post does not belong to the user, there will only be the option to like the post or upload a new post. Once the user has liked a post, they cannot increase the number of likes by clicking it again, instead clicking on it again will unlike that post. 
 
-Within the details, there is also a comment section. Once commented, only the user who posted the comment can delete it. 
+Within the details section, there is also a comment section. Once commented, only the user who posted the comment can delete it. 
 
 At the bottom of the page, similar tattoos will show up for the user to explore. 
 
@@ -54,13 +54,15 @@ The below image shows what the details page looks like when a user clicks on an 
 The below image shows what the details page looks like when a user clicks on another user's image. 
 ![Home page](images/individual-page-notuser.png)
 
-When adding a post, the user will need to fill in the form below. At the moment, the form will only accept an image URL, but an upload picture functionality will be added. 
+When adding a post, the user will need to fill in the form below. At the moment, the form will only accept an image URL, but an upload picture functionality will be added. This function has since been added where the image is hosted via Cloudinary.
 ![Sharing a tattoo](images/adding-a-post.png)
 
 ### Other features 
 - When signing up, they system will check if the email and username has already been used, if it is, the page will be redirected to the signup page 
 - All tattoos show from newest to oldest except for the trending tattoos section on the home page which shows the posts that have the highest number of likes. 
 - Navigation bar becomes a drop-down navigation when on mobile mode 
+- There is a drop down in the navigation bar where you can select the category of tattoos you'd like to see. 
+- Website layout will change depending on screen size 
 
 
 ### Future features

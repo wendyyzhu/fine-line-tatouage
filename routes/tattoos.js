@@ -12,7 +12,6 @@ router.post("/", ensureLoggedIn, upload.single("uploadfile"), (req, res) => {
     let imagePath = req.file.path
     let toAdd = "c_fill,h_500,w_500/"
     const newPath = imagePath.slice(0, 50) + toAdd + imagePath.slice(50)
-    console.log(newPath)
     let title = req.body.title
     let category = req.body.category
     let artist = req.body.artist

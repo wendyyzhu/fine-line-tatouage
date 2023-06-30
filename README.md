@@ -65,8 +65,9 @@ When adding a post, the user will need to fill in the form below. At the moment,
 
 ### Future features
 - Function to edit a comment instead of only deleting it 
-- Upload images instead of typing an image URL 
-- Show tattoo artist details when their name is clicked instead of just the tattoos they've done 
+- Show tattoo artist details when their name is clicked instead of just the tattoos they've done
+- Feature to follow certain users or artists  
+- Feature to only show a couple of comments and then a see all button to show all comments 
 
 
 ### Technologies used 
@@ -86,4 +87,5 @@ When adding a post, the user will need to fill in the form below. At the moment,
 - Express-ejs-layouts
 - Express-session 
 - Method-override 
+- Cloudinary
 - Pg 

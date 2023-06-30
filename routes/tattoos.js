@@ -104,7 +104,6 @@ router.delete("/:id", ensureLoggedIn, (req,res) => {
 
 router.put("/:id", ensureLoggedIn, (req, res) => {
     let title = req.body.title
-    let imageUrl = req.body.image_url
     let category = req.body.category
     let artist = req.body.artist
     let id = req.params.id
@@ -112,10 +111,9 @@ router.put("/:id", ensureLoggedIn, (req, res) => {
     const sql = `UPDATE tattoos 
         SET title = $1, 
         category = $2, 
-        artist = $3, 
-        image_url = $4 
+        artist = $3 
         WHERE id = $5;`
-    db.query(sql, [title, category, artist, imageUrl, id], (err, dbRes) => {
+    db.query(sql, [title, category, artist, id], (err, dbRes) => {
         res.redirect(`/tattoos/${req.params.id}`)
     })
 })

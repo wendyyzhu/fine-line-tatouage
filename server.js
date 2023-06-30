@@ -19,6 +19,8 @@ const categoryRouter = require("./routes/category.js")
 const setUser = require("./middlewares/set_user.js")
 const ensureLoggedIn = require("./middlewares/ensure_logged_in.js")
 
+const upload = require("./middlewares/upload")
+
 app.set("view engine", "ejs")
 
 app.use(express.static("public"))

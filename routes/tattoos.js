@@ -2,14 +2,18 @@ const express = require("express")
 const router = express.Router()
 const db = require("../db/index.js")
 const ensureLoggedIn = require("../middlewares/ensure_logged_in.js")
+const upload = require("../middlewares/upload")
 
 router.get("/", ensureLoggedIn, (req, res) => {
     res.render("new")
 })
 
-router.post("/", ensureLoggedIn, (req, res) => {
+router.post("/", ensureLoggedIn, upload.single("uploadfile"), (req, res) => {
+    let imagePath = req.file.path
+    let toAdd = "c_fill,h_500,w_500/"
+    const newPath = imagePath.slice(0, 50) + toAdd + imagePath.slice(50)
+    console.log(newPath)
     let title = req.body.title
-    let imageUrl = req.body.image_url
     let category = req.body.category
     let artist = req.body.artist
     let datePosted = new Date().toLocaleDateString();
@@ -18,7 +22,7 @@ router.post("/", ensureLoggedIn, (req, res) => {
                 VALUES ($1, $2, $3, $4, $5, $6, $7)
                 RETURNING id;
                 `
-    db.query(sql, [title, imageUrl, category, artist, req.session.userId, datePosted, 0], (err, dbRes) => {
+    db.query(sql, [title, newPath, category, artist, req.session.userId, datePosted, 0], (err, dbRes) => {
         if (err) {
             console.log(err)
         }

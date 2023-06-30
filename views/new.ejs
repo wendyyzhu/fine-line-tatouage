@@ -3,25 +3,29 @@
 <div class="form">
     <h2>SHARE A TATTOO</h2>
 
-    <form action="/tattoos" method="post">
-        <input type="text" name="title" placeholder="TITLE OF POST">
-        <input type="text" name="image_url" placeholder="IMAGE URL">
-        <input type="text" name="artist" placeholder="TATTOO ARTIST">
-
-        <select name="category" id="category">
-            <option selected="true" disabled="true">CATEGORY</option>
-            <option value="animal">ANIMAL</option>
-            <option value="anime">ANIME</option>
-            <option value="floral">FLORAL</option>
-            <option value="food">FOOD</option>
-            <option value="geometric">GEOMETRIC</option>
-            <option value="lettering">LETTERING</option>
-            <option value="nature">NATURE</option>
-            <option value="portrait">PORTRAIT</option>
-            
-        </select>
+   
 
 
-        <button class="share-btn">Share</button>
-    </form>
+        <form action="/tattoos" method="post" enctype="multipart/form-data">
+            <input class = "choose-file" type="file" name="uploadfile">
+            <p class="supported-img">Only png, jpeg, images are supported.</p>
+            <input type="text" name="title" placeholder="TITLE OF POST">
+            <!-- <input type="text" name="image_url" placeholder="IMAGE URL"> -->
+            <input type="text" name="artist" placeholder="TATTOO ARTIST">
+            <select name="category" id="category">
+                <option selected="true" disabled="true">CATEGORY</option>
+                <option value="animal">ANIMAL</option>
+                <option value="anime">ANIME</option>
+                <option value="floral">FLORAL</option>
+                <option value="food">FOOD</option>
+                <option value="geometric">GEOMETRIC</option>
+                <option value="lettering">LETTERING</option>
+                <option value="nature">NATURE</option>
+                <option value="portrait">PORTRAIT</option>
+            </select>
+            <button class="share-btn">Share</button>
+        </form>
+
+
+    
 </div>

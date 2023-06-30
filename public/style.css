@@ -14,9 +14,17 @@ body {
     margin-bottom: 20px;
 }
 
+.choose-file {
+    width: 50%;
+}
+
 img {
     display: block;
     margin: auto;
+}
+
+.supported-img {
+    padding-bottom: 10px;
 }
 
 .add-btn {
@@ -438,5 +446,9 @@ input {
 
     .form {
         width: 80%;
+    }
+
+    .choose-file {
+        width: 70%;
     }
 }
